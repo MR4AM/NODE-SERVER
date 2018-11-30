@@ -28,16 +28,16 @@ module.exports={
                 imgArr.push($(item).find('.il_img img').attr('src'))
                 console.log('获取爬取图片的数组',imgArr);
             })
-            async.mapSeries(imgArr,function(imgUrl, callback){
-                console.log(imgUrl,'检测')
-                setTimeout(function(){
-                    let imgName = imgUrl.split('/').pop();
-                    downloadPic(imgUrl.indexOf('https:')?imgUrl:'https:'+ imgUrl, './catpics/');
-                  callback(null, imgUrl);
-                },400);
-              }, function(err, results){});
+            // async.mapSeries(imgArr,function(imgUrl, callback){
+            //     console.log(imgUrl,'检测')
+            //     setTimeout(function(){
+            //         let imgName = imgUrl.split('/').pop();
+            //         downloadPic(imgUrl.indexOf('https:')?imgUrl:'https:'+ imgUrl, './catpics/');
+            //       callback(null, imgUrl);
+            //     },400);
+            //   }, function(err, results){});
             //存放数据
-            // mkdir('./images',downloadImg);
+            mkdir('./images',downloadImg);
         })
         //创建存储爬虫图片的目录
          function mkdir(_path,callback){

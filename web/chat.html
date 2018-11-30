@@ -4,13 +4,27 @@
     <meta charset="UTF-8" />
     <title>socket测试页</title>
     <style type="text/css">
-         #finishbox{margin:100px auto;width: 300px;border:1px dashed orange;text-align: center;background-color:#ccc;}
+         #finishbox{margin:0 auto;width: 600px;border:1px dashed orange;text-align: center;background-color:#ccc;}
          #prolist h3{border-top: 1px solid orange;}
+         .listbox{
+             margin: 0 auto;
+             width: 600px;
+             height: 500px;
+             border:2px solid #000;
+         }
+         .sendMsg{
+             display: block;
+             margin: 0 auto;
+             height: 50px;
+             width: 600px;
+         }
     </style>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/socket.io/2.0.4/socket.io.js"></script>
 </head>
 <body>
+<div class="listbox"></div>
+<input type="text" class="sendMsg">
  <div id="finishbox">
         <button id="connectio">连接socket服务器</button>
         <input type="button" value="发送信息" id="printer"/>
@@ -19,21 +33,21 @@
     <script type="text/javascript">
         var socket;
         jQuery(function($){
-            socket=io.connect('ws://localhost:8082');
+            socket=io.connect('http://localhost:8082');
            $('#connectio').click(function(){
                socket.on('connection',function(msg){
                    console.log(msg,'连接socket服务器')
                })
-           })
+           });
            $('#printer').click(function(){
-               socket.emit('onmessage',function(msg){
+            let sendMsg=$('.sendMsg').val();
+               socket.emit('onmessage',sendMsg,function(msg){
                    console.log(msg,'连接socket服务器');
-                  
-                   socket.on('onsend',function(msg){
-                        window.alert('667676767676')
-                    })
                })
            })
+           socket.on('onsend',function(msg){
+                window.alert(msg);
+            })
         })
 
     </script>

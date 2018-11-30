@@ -39,9 +39,9 @@ module.exports={
             console.log(`连接服务端成功${this.formatTime(new Date())}`);
             // 接收来自客户端的信息
             client.on('onmessage',(_mess)=>{
-                console.log(`id为${client.id}的用户向客户端发送了消息${this.formatTime(new Date())}`)
+                console.log(`id为${client.id}的用户于${this.formatTime(new Date())}向客户端发送了消息${_mess}`,)
                  // 将信息推送到各客户端
-                 io.emit('onsend','909090909090');
+                 io.emit('onsend',_mess);
             })
         })
     }

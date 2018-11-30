@@ -1,30 +1,13 @@
 const filter = require('../utils/filter')
 const db = require('../db')
+const apiResult=require('../utils/apiResult') 
 
 module.exports = {
     register(app){
-        app.post('/generateorder', (req, res) => {
-            let pros = JSON.parse(req.body.pros);
-            let total = 0;
-            for(let item of pros){
-                total += item.price*1;
-            }
-            let order = {
-                orderno: parseInt(Math.random() * 1000000),
-                total,
-                status: 0,
-                products: pros
-            }
-            db.mongodb.insert('order', order).then((result) => {
-                res.send(result);
-            })
-        })
-        app.post('/updateorder',(req,res)=>{
-            let orderno=req.body.orderno*1;
-            let status=req.body.status*1;
-            db.mongodb.update('order',{"orderno":orderno},{"status":status},function(result){
-                res.send(result);
-            });
+        //node利用express搭建http服务提供web数据交互连接和交互，req为请求体，res为响应体
+        app.get('/test',(req,res)=>{
+            console.log(req.query,'用户请求进来了')
+            res.send(apiResult(true,'78787','iiiii','jasjsjsj'))
         })
     }
 }
