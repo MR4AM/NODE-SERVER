@@ -1,0 +1,2 @@
+# NODE-SERVER
+node作为服务层创建服务、连接数据库、对数据库进行增删查改、使用fs文件模块、websocket通信长连接、cheerio及superagent解析基础网页结构进行基础网页清洗及craw操作、
