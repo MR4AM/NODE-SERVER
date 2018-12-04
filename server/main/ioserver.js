@@ -1,45 +1,14 @@
-
+//node层利用socket.io模块为web端提供长连接通信。我们在node层创建定义一个socke连接，然后可以将这项服务进程添加到forever进程中，在web端建立连接
+//SocketIO提供on和emit两种形式以事件的方式进行消息接收和推送，只要确定web端和node层触发的是同一个事件，并且这个事件在通信两端形成一个闭环，也就是on
+//和emit方式同时存在。
+const jstools=require('../utils/jstool');
 module.exports={
-     //时间格式化
-     formatTime(time, cFormat) {
-        if (arguments.length === 0) return null
-        if ((time + '').length === 10) {
-            time = +time * 1000
-        }
-
-        var format = cFormat || '{y}-{m}-{d} {h}:{i}:{s}', date
-        if (typeof time === 'object') {
-            date = time
-        } else {
-            date = new Date(time)
-        }
-
-        var formatObj = {
-            y: date.getFullYear(),
-            m: date.getMonth() + 1,
-            d: date.getDate(),
-            h: date.getHours(),
-            i: date.getMinutes(),
-            s: date.getSeconds(),
-            a: date.getDay()
-        }
-        var time_str = format.replace(/{(y|m|d|h|i|s|a)+}/g, (result, key) => {
-            var value = formatObj[key]
-            if (key === 'a') return ['一', '二', '三', '四', '五', '六', '日'][value - 1]
-            if (result.length > 0 && value < 10) {
-                value = '0' + value
-            }
-            return value || 0
-        })
-        return time_str
-    },
-
     startio(io){
         io.on('connection',(client)=>{
-            console.log(`连接服务端成功${this.formatTime(new Date())}`);
+            console.log(`连接服务端成功${jstools.formatTime(new Date())}`);
             // 接收来自客户端的信息
             client.on('onmessage',(_mess)=>{
-                console.log(`id为${client.id}的用户于${this.formatTime(new Date())}向客户端发送了消息${_mess}`,)
+                console.log(`id为${client.id}的用户于${jstools.formatTime(new Date())}向客户端发送了消息${_mess}`,)
                  // 将信息推送到各客户端
                  io.emit('onsend',_mess);
             })

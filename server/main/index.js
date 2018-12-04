@@ -16,6 +16,7 @@ const ioserverRouter = require('./ioserver');
 // const pythtest=require('./pythtest');
 const pythwords=require('./pythwords');
 const dns=require('./dns');
+const unload=require('./unload');
 
 //跨域处理
 app.all('*', function(req, res, next) {
@@ -42,5 +43,6 @@ module.exports = {
         orderRouter.register(app);
         ioserverRouter.startio(io);
         http.listen(_port || 8080);
+        unload.singleunload(app);
     }
 }
