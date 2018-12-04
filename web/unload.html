@@ -6,25 +6,56 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>上传附件</title>
     <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        .unloadCom{
+            position: relative;
+            margin: 0 auto;
+            width: 200px;
+            height: 200px;
+            border:1px solid #ccc;
+        }
+        img{
+            width: 200px;
+            height: 200px;
+        }
+        #photos{
+            position: absolute;
+            top:0;
+            z-index: 100;
+            text-decoration: none;
+            /* 隐藏默认file的默认样式 */
+            opacity: 0;
+            width: 200px;
+            height: 200px;
+            border:1px solid #ccc;
+        }
+        #btn_submit{
+            position: absolute;
+            bottom:-10%;
+        }
+    </style>
 </head>
 <body>
-    <form>
-        <input type="file" name="photos" id="photos" multiple>
-        <input type="button" value="submit" id="btn_submit">
-    </form>
+
+    <div class="unloadCom">
+        <img src="" alt="">
+        <form>
+            <input type="file" name="photos" id="photos" multiple>
+        </form>
+        <input type="button" value="上传图片" id="btn_submit">
+    </div>
 </body>
 <script>
         $(function(){
+            //图片上传
             $('#btn_submit').click(function(){
                 var myForm = new FormData();    // 创建一个空的FormData对象
-                // myForm.append("username", document.querySelector('#username').value);       // append()方法添加字段
-                // myForm.append("pwd", document.querySelector('#pwd').value);   // 数字123456立即被转换成字符串“123456”
                 let files = document.querySelector('[type=file]').files;
                 for(var i = 0; i < files.length; i++){
                     myForm.append("photos", files[i]);                
                 }
                 $.ajax({
-                    url: 'http://localhost:88/mulUpload',
+                    url: 'http://192.168.9.51:88/mulUpload',
                     type: 'post',
                     data: myForm,
                     contentType: false,
@@ -34,6 +65,17 @@
                         console.log(res)
                     }
                 })
+            })
+            //图片预览
+            $('#photos').on('change', function(event) {
+                var files = event.target.files,
+                reader = new FileReader();
+                if(files && files[0]){
+                reader.onload = function (ev) {
+                $('img').attr('src', ev.target.result);
+                }
+                reader.readAsDataURL(files[0]);
+                }
             })
         })
     </script>

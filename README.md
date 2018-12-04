@@ -26,3 +26,12 @@ SocketIO提供on和emit两种形式以事件的方式进行消息接收和推送
 - 2.利用http模块向该网站发起服务请求，获取响应信息。
 - 3.利用cheerio选择器模块解析请求回来的页面DOM结构，并利用正则将所需的页面信息截取成对应的数据结构，将数据结构返回到数据库中进行存储。
 - 4.利用fs模块解析数据结构并存储到本地。
+## fs模块
+- fs模块用于对系统文件及目录进行读写操作
+### readFile读取文件
+- fs.readFile(filename,[option],callback) 方法读取文件。
+### WriteFile写入文件
+- 使用fs.writeFile(filename,data,[options],callback)写入内容到文件。
+### 使用fs.read和fs.write读写文件
+- fs.read和fs.write功能类似fs.readFile和fs.writeFile()，但提供更底层的操作，实际应用中多用fs.readFile和fs.writeFile。
+- 使用fs.read和fs.write读写文件需要使用fs.open打开文件和fs.close关闭文件。
