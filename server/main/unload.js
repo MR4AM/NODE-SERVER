@@ -5,7 +5,6 @@ var multer = require ('multer');
 var path = require('path')  ;
 var fs = require('fs');
 //设置上传的目录，  
-// var upload = multer({ dest:  path.join(__dirname,'temp')});  
 
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
@@ -53,14 +52,4 @@ app.post('/mulUpload', upload.array('photos', 12), function (req, res, next) {
     res.end("上传成功");  
 })
 
-app.listen(88)
-// module.exports={
-//     singleunload(app){
-//         app.use(express.static(path.join(__dirname, '/')));
-//        app.post('/singleUpload', upload.single('photos'), function (req, res, next) {  
-//         console.log(req.file);  
-//         console.log(req.body);  
-//         res.end("上传成功");  
-//     });  
-//     },
-// }
+app.listen(88);
