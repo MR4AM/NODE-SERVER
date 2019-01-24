@@ -5,12 +5,15 @@ const jstools=require('../utils/jstool');
 module.exports={
     startio(io){
         io.on('connection',(client)=>{
-            console.log(`连接服务端成功${jstools.formatTime(new Date())}`);
+            console.log(`id为${client.id}的用户连接服务端成功`);
+            // console.log(`连接服务端成功${jstools.formatTime(new Date())}`);
+            
             // 接收来自客户端的信息
             client.on('onmessage',(_mess)=>{
-                console.log(`id为${client.id}的用户于${jstools.formatTime(new Date())}向客户端发送了消息${_mess}`,)
+                console.log(`id为${client.id}的用户向客户端发送了消息${_mess}`,)
+                // console.log(`id为${client.id}的用户于${jstools.formatTime(new Date())}向客户端发送了消息${_mess}`,)
                  // 将信息推送到各客户端
-                 io.emit('onsend',_mess);
+                 io.emit('onsend',_mess,client.id);
             })
         })
     }

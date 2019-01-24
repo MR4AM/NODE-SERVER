@@ -60,6 +60,7 @@ app.get('/wxpush',(req,res)=>{
     // let code=req.query.code;
     // var openidapi=`https://api.weixin.qq.com/sns/jscode2session?appid=${APPID}&secret=${APPSECRET}&js_code=${code}&grant_type=authorization_code`;
     wxrequest.get(tokenapi).end((req1,res2)=>{
+        console.log(res2.body.access_token)
         var wxpushapi=`https://api.weixin.qq.com/cgi-bin/message/wxopen/template/send?access_token=${res2.body.access_token}`;
         let data={
             touser: "oipRc5ZpSRwR_dkCADYMhnhT-S5A",//openId

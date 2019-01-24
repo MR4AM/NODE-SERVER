@@ -17,6 +17,7 @@ const ioserverRouter = require('./ioserver');
 const pythwords=require('./pythwords');
 const dns=require('./dns');
 const unload=require('./unload');
+const wxconfig=require('./wxconfig');
 
 //跨域处理
 app.all('*', function(req, res, next) {
@@ -43,6 +44,9 @@ module.exports = {
         orderRouter.register(app);
         ioserverRouter.startio(io);
         http.listen(_port || 8080);
-        unload.singleunload(app);
+        // unload.singleunload(app);
+        //注入微信sdk签名及调用配置
+        wxconfig.config(app);
+        wxconfig.publicToken(app);
     }
 }
