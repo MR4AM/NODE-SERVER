@@ -32,7 +32,7 @@ var wxsignature = {
     //sha1加密
     sha1(ticket){
         //当前网页
-        let url='192.168.8.48:8080';
+        let url='http://23w4962t28.imwork.net';
         let configPar={};
         configPar.appId='wx915d308cf5228962';
         configPar.noncestr=this.render_noncestr();

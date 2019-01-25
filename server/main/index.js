@@ -34,10 +34,11 @@ app.all('*', function(req, res, next) {
     }
 });
 //统一管理静态资源文件
-app.use(express.static(path.join(path.resolve(__dirname, '../../'), '/websrc')));
-app.use(bp.urlencoded({extended: false}));
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
-
+// app.use(express.static(path.join(path.resolve(__dirname, '../'), 'static')));
+// app.use(bp.urlencoded({extended: false}));
+// app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}))
+//中间件 express.static 设置静态文件访问，再用path.join拼接访问路径，path.resolve将相对路径拼接成绝对路径
+app.use(express.static(path.join(path.resolve(__dirname,'../'))));
 //集中服务进程统一执行
 module.exports = {
     start(_port){
