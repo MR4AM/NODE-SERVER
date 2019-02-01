@@ -17,6 +17,7 @@
     "forever-monitor": "^1.7.1",
     "mongodb": "^3.0.3",
     "multer": "^1.4.1",
+    "pm2": "^3.2.9",
     "sha1": "^1.1.1",
     "socket.io": "^2.0.4",
     "superagent": "^3.8.3",

@@ -1,5 +1,17 @@
 # NODE-SERVER
 node作为服务层创建服务、连接数据库、对数据库进行增删查改、使用fs文件模块、websocket通信长连接、cheerio及superagent解析基础网页结构进行基础网页清洗及craw操作。
+> node层常用的进程管理器的有forever和pm2,远程部署项目的时候需要将项目变成远程服务主机的进程。
+## pm2 模块
+- pm2 的功能较forever更完善
+### pm2 安装运行
+- npm install pm2 -g 主机全局配置pm2
+- pm2 start app.js 在项目入口文件根目录下运行app.js
+- pm2 list 查看运用的进程数及cpu占比占用内存memory等常规参数
+- pm2 monit 追踪资源运行情况
+- pm2 describe 0 这里最后一个参数代表是pm2 list 进程对应的索引，通过对应索引找到查看应用详细部署状态
+- pm2 log 查看服务日志输出
+- pm2 stop app.js  在项目入口文件根目录下结束进程
+> 详细配置参考至 https://www.jianshu.com/p/fdc12d82b661
 ## forever模块
 - forever可以看做是一个nodejs的守护进程，能够启动，停止，重启我们的app应用。在forever进程之下，创建一个node app的子进程
 ### forever安装
