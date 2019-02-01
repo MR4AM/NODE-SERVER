@@ -8,9 +8,20 @@ node作为服务层创建服务、连接数据库、对数据库进行增删查�
 - pm2 start app.js 在项目入口文件根目录下运行app.js
 - pm2 list 查看运用的进程数及cpu占比占用内存memory等常规参数
 - pm2 monit 追踪资源运行情况
-- pm2 describe 0 这里最后一个参数代表是pm2 list 进程对应的索引，通过对应索引找到查看应用详细部署状态
+- pm2 describe 0 这里最后一个参数代表是pm2 list 进程对应的id，通过对应id找到查看应用详细部署状态
 - pm2 log 查看服务日志输出
 - pm2 stop app.js  在项目入口文件根目录下结束进程
+> pm2 进行日志分割管理
+- pm2 install pm2-logrotate 安装pm2日志分割模块
+> 具体分割指令
+- pm2 set pm2-logrotate:retain 7
+- pm2 set pm2-logrotate:compress false 
+- pm2 set pm2-logrotate:dateFormat YYYY-MM-DD_HH-mm-ss 
+- pm2 set pm2-logrotate:max_size 10M 
+- pm2 set pm2-logrotate:retain 7 
+- pm2 set pm2-logrotate:rotateInterval '0 0 * * * '
+- pm2 set pm2-logrotate:rotateModule true 
+- pm2 set pm2-logrotate:workerInterval 30  
 > 详细配置参考至 https://www.jianshu.com/p/fdc12d82b661
 ## forever模块
 - forever可以看做是一个nodejs的守护进程，能够启动，停止，重启我们的app应用。在forever进程之下，创建一个node app的子进程
