@@ -38,5 +38,14 @@ module.exports={
                 }
             })
         })
+    },
+    wxjump(app){
+        app.get('/wxjump',(req,res)=>{
+            res.header("Content-type:application/pdf");
+            res.header("Content-Disposition:attachment;filename='downloaded.pdf'");
+            var downloadUrl='https://img.shuixindk.cn/wxdownload.txt';
+            // var downloadUrl='https://img.tuanzidai.cn/loan/market/boluodai_2.3_sha3b74589b1187b7688822afe02115156c0fc08d69_120000_debug_20190123_17_55.apk';
+            res.send(apiResult(200,downloadUrl,'返回成功',null))
+        })
     }
 }
