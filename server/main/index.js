@@ -19,6 +19,7 @@ const pythwords=require('./pythwords');
 const dns=require('./dns');
 const unload=require('./unload');
 const wxconfig=require('./wxconfig');
+const wxpay=require('./wxpay');
 
 //跨域处理
 app.all('*', function(req, res, next) {
@@ -66,5 +67,6 @@ module.exports = {
         wxconfig.config(app);
         wxconfig.publicToken(app);
         wxconfig.wxjump(app);
+        wxpay.wxpay(app);
     }
 }

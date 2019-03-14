@@ -47,7 +47,7 @@ function closeMysql(connect){
 }
 //数据连接失败后自动连接控制连接—次数10次
 function autoConnect(connect){
-    if(n<=10){
+    if(n<=2){
         n++;
         connect.connect(function(err){
             if(err){

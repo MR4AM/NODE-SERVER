@@ -41,10 +41,22 @@ module.exports={
     },
     wxjump(app){
         app.get('/wxjump',(req,res)=>{
-            res.header("Content-type:application/pdf");
-            res.header("Content-Disposition:attachment;filename='downloaded.pdf'");
-            var downloadUrl='https://img.shuixindk.cn/wxdownload.txt';
-            // var downloadUrl='https://img.tuanzidai.cn/loan/market/boluodai_2.3_sha3b74589b1187b7688822afe02115156c0fc08d69_120000_debug_20190123_17_55.apk';
+            console.log('检测用户请求是否进入微信内置浏览器的下载header设置989888888888888')
+            res.header("Content-Type: application/vnd.ms-word;charset=utf-8");
+            res.header("Content-Disposition: attachment; filename=\"https://img.shuixindk.cn/wxdownload.doc\"");
+            app.all('*', function(req1, res1, next) {
+                console.log('检测用户请求是否进入微信内置浏览器的下载header设置')
+                res1.header("Content-Type: application/vnd.ms-word;charset=utf-8");
+                res1.header("Content-Disposition: attachment; filename=\"load.doc\"");
+                if(req1.method == 'OPTIONS') {
+                    //让options预请求快速返回
+                    res1.sendStatus(200); 
+                } else { 
+                    next(); 
+                }
+            });
+            // var downloadUrl='https://img.shuixindk.cn/wxdownload.doc';
+            var downloadUrl='https://img.tuanzidai.cn/loan/market/boluodai_2.3_sha3b74589b1187b7688822afe02115156c0fc08d69_120000_debug_20190123_17_55.apk';
             res.send(apiResult(200,downloadUrl,'返回成功',null))
         })
     }
