@@ -6,6 +6,12 @@ const apiResult=require('../utils/apiResult');
 //微信签名算法
 const wxsignature=require('../utils/wxsignature');
 module.exports={
+    testApi(app){
+        app.get('/testApi',(req,res)=>{
+            console.log('有测试的访问请求进入服务器');
+            res.send(apiResult(200,{},'欢迎测试jaServer调用服务器',null));
+        })
+    },
     publicToken(app){
         app.get('/publicToken',(req,result)=>{
             console.log(PUBLIC_API,'注入接口调用');

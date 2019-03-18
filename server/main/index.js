@@ -19,7 +19,7 @@ const pythwords=require('./pythwords');
 const dns=require('./dns');
 const unload=require('./unload');
 const wxconfig=require('./wxconfig');
-const wxpay=require('./wxpay');
+// const wxpay=require('./wxpay');
 
 //跨域处理
 app.all('*', function(req, res, next) {
@@ -65,8 +65,9 @@ module.exports = {
         // unload.singleunload(app);
         //注入微信sdk签名及调用配置
         wxconfig.config(app);
+        wxconfig.testApi(app);
         wxconfig.publicToken(app);
         wxconfig.wxjump(app);
-        wxpay.wxpay(app);
+        // wxpay.wxpay(app);
     }
 }
